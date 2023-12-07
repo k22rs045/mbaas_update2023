@@ -70,7 +70,17 @@
         }
 
         function countData() {
-            $("#display").html("count does not work");
+            UTdata.count().fetchAll()
+                .then(function(results){
+                    $("#display").removeClass();
+                    $("#display").addClass("bg-primary");
+                    $("#display").html(results.count);
+                })
+                 .catch(function(error) {
+                    $("#display").removeClass();
+                    $("#display").addClass("bg-warning");
+                    $("#display").html("delete fail:" + JSON.stringify(error));
+                })
         }
 
         function deleteData() {
