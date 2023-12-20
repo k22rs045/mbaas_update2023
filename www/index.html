@@ -82,26 +82,10 @@
                     $("#display").html("delete fail:" + JSON.stringify(error));
                 })
         }
-        /*
-        function deleteData() {
-            UTdata.fetch()
-                .then(function(results){
-                    return results.delete();
-                })
-                .then(function(results){
-                    $("#display").removeClass();
-                    $("#display").addClass("bg-success");
-                    $("#display").html("delete success");
-                })
-                .catch(function(error){
-                    $("#display").removeClass();
-                    $("#display").addClass("bg-warning");
-                    $("#display").html("delete fail:" + JSON.stringify(error));
-                })
-        }
-        */
-        function deleteData() {
-            UTdata.fetch()
+        
+        function deleteData(){
+            let del = parseInt($("#deldata").val());
+             UTdata.equalTo(key, del).fetch()
                 .then(function(results){
                     return results.delete();
                 })
@@ -143,7 +127,7 @@
     <div>
         <input type="text" id="data" placeholder="スコア">
         <a onclick="enterData()" class="btn btn-outline-secondary" role="button">Enter</a>
-        <input type="text" id="delete" placeholder="削除">
+        <input type="number" id="deldata" placeholder="削除">
          <a onclick="deleteData()" class="btn btn-outline-secondary" role="buton">Delete</a>
     </div>
     <div>
