@@ -116,7 +116,26 @@
                 .catch(function(error) {
                     $("#display").removeClass();
                     $("#display").addClass("bg-warning");
-                    $("#display").html("delete fail:" + JSON.stringify(error));
+                    $("#display").html("sum fail:" + JSON.stringify(error));
+                })
+        }
+
+        function aveData(){
+           UTdata.fetchAll()
+                .then(function(results) {
+                    let sum = 0;
+                    for (let i = 0; i < results.length; i++) {
+                        sum += results[i].get(key);
+                    }
+                    $("#display").removeClass();
+                    $("#display").addClass("text-light");
+                    $("#display").addClass("bg-primary");
+                    $("#display").html(sum/results.length);
+                })
+                .catch(function(error) {
+                    $("#display").removeClass();
+                    $("#display").addClass("bg-warning");
+                    $("#display").html("ave fail:" + JSON.stringify(error));
                 })
         }
 
@@ -146,18 +165,19 @@
     <div>
         <input type="text" id="data" placeholder="スコア">
         <a onclick="enterData()" class="btn btn-outline-secondary" role="button">Enter</a>
-        <input type="number" id="deldata" placeholder="削除">
+        <input type="text" id="deldata" placeholder="削除">
         <a onclick="deleteData()" class="btn btn-outline-secondary" role="buton">Delete</a>
     </div>
     <div>
         <a onclick="fetchAll()" class="btn btn-outline-secondary" role="buton">Fetch All</a>
         <a onclick="sortData()" class="btn btn-outline-secondary" role="button">Sort</a>
         <a onclick="countData()" class="btn btn-outline-primary" role="button">Count</a>
-        <a onclick="sumData()" class="btn btn-outline-primary" role="button">Sum</a><br>
+        <a onclick="sumData()" class="btn btn-outline-primary" role="button">Sum</a>
+        <a onclick="aveData()" class="btn btn-outline-primary" role="button">Averege</a><br>
     </div>
     <div>
         <input type="text" id="update" placeholder="更新">
-        <a onclick="updateData()" class="btn btn-outline-primary" role="button">Update</a>
+        <a onclick="updateData()" class="btn btn-outline-primary" role="button">Update</a><br>
     </div>
     <div id="display" class="text-light bg-info">
         Results
